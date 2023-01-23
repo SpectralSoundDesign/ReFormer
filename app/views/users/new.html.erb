@@ -1,0 +1,40 @@
+<!-- <form action="/users" method="post" accept-charset="UTF-8">
+<label for="username">Username:</label>
+<input type="text" name="user[username]" id="username">
+<label for="email">Email:</label>
+<input type="text" name="user[email]" id="email">
+<label for="password">Password:</label>
+<input type="password" name="user[password]" id="password">
+<input type="submit" value="Submit">
+</form> -->
+
+<!-- <%= form_tag("/users", :method => "post") do %>
+<%= label_tag(:username, "Username:") %>
+<%= text_field_tag(:username) %>
+<%= label_tag(:email, "Email:") %>
+<%= text_field_tag(:email) %>
+<%= label_tag(:password, "Password:") %>
+<%= text_field_tag(:password) %>
+<% end %> -->
+
+<% if @user.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@user.errors.count, "error") %> prohibited this article from being saved:</h2>
+
+    <ul>
+      <% @user.errors.each do |error| %>
+        <li><%= error.full_message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_with model: @user do |form| %>
+<%= form.label "Username:" %>
+<%= form.text_field :username, value: "someusername22" %>
+<%= form.label "Email:" %>
+<%= form.text_field :email, value: "example@email.com" %>
+<%= form.label "Password:" %>
+<%= form.password_field :password, value: "12345" %>
+<%= form.submit %>
+<% end %>
